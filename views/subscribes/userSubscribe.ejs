@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GoMilk</title>
+    <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+    <div id="content">
+
+        <%- include('../partials/header.ejs') %>
+
+        <nav>
+            <div class="navbar">
+               
+            </div>
+        </nav>
+    
+        <main style="column-count: 2;display:grid;justify-items: center;">
+        <% subscribes.forEach(subscribe => { %>
+             
+            
+            <div class="postCard" style="width : 800px;">
+                <img src="<%= subscribe.Product.img %>" alt="">
+                <h1>Subscribe NO: <%= subscribe.id %></h1>
+                <table >
+                    <tr>
+                        <th>Milk</th>
+                        <td><%= subscribe.Product.name  %></td>
+                    </tr>
+                    <tr>
+                        <th>Flavor</th>
+                        <td><%= subscribe.Product.flavor  %></td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td><%= subscribe.Product.category  %></td>
+                    </tr>
+                    <tr>
+                        <th>Unit</th>
+                        <td><%= subscribe.Product.unit  %></td>
+                    </tr>
+                    <tr>
+                        <th>Rating</th>
+                        <td><%= subscribe.Product.rating  %></td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td><%= helpers.getCurrency(subscribe.Product.price)  %></td>
+                    </tr>
+                    <tr>
+                        <th>Subscribed At</th>
+                        <td><%= subscribe.createdAt  %></td>
+                    </tr>
+                    <tr>
+                        <th>Start At</th>
+                        <td><%= subscribe.startDate  %></td>
+                    </tr>
+                    <tr>
+                        <th>End At</th>
+                        <td><%= subscribe.endDate  %></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td><%= subscribe.status  %></td>
+                    </tr>
+                </table>
+
+                <br><br>
+
+                <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Process Date</th>
+                    <th>Subtotal</th>
+                    <th>Process Status</th>
+                </tr>
+                <% subscribe.Transactions.forEach(transaction => { %>
+                    <tr>
+                        <td><%= transaction.id %></td>
+                        <td><%= transaction.processDate %></td>
+                        <td><%= transaction.subtotal %></td>
+                        <td><%= transaction.processed %></td>
+                    </tr>
+                <% }) %>
+                </table>
+
+
+            </div>
+
+        <% }) %>
+        </main>
+
+        <aside>
+            
+        </aside>
+
+        
+
+        <footer></footer>
+
+    </div>
+    
+</body>
+</html>

@@ -5,6 +5,18 @@
     <link rel="stylesheet" href="/styles/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var order = false;
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".postCard").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div id="content">
@@ -13,7 +25,12 @@
 
         <nav>
             <div class="navbar">
-               
+            <input id="myInput" type="text" placeholder="Search..">
+            <br><br>
+            <button class="sortButton">
+                Sort by Rating
+            </button>
+            
             </div>
         </nav>
     

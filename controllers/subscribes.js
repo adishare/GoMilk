@@ -1,5 +1,6 @@
 const {User,Transaction,Subscribe,Product} = require('../models')
 const models = require('../models')
+const helpers = require('../helpers')
 
 module.exports = class ControllerSubscribe {
 
@@ -9,6 +10,18 @@ module.exports = class ControllerSubscribe {
         })
         .then((subscribes) => {
             res.send(subscribes)
+        }).catch((err) => {
+            res.send(err)
+        });
+    }
+
+    static showMySubscribe(req,res){
+        Subscribe.findAll({
+            where : {UserId : req.session.user.id},
+            include : [Transaction,Product]
+        })
+        .then((subscribes) => {
+            res.render('subscribes/userSubscribe',{subscribes})
         }).catch((err) => {
             res.send(err)
         });
@@ -33,7 +46,7 @@ module.exports = class ControllerSubscribe {
                 var oneDay = 24*60*60*1000            
                 var range = Math.round(Math.abs((subscribe.endDate.getTime() - subscribe.startDate.getTime())/(oneDay)))
                 let transactionsToCreat = []
-                for (let i = 1; i <= range; i+= subscribe.tempo) {
+                for (let i = 0; i <= range; i+= subscribe.tempo) {
                     transactionsToCreat.push({
                         SubscribeId: subscribe.id,
                         processDate: addDays(subscribe.startDate,i),
@@ -44,10 +57,11 @@ module.exports = class ControllerSubscribe {
                 }
                 Transaction.bulkCreate(transactionsToCreat)
                 .then(() => { 
-                    return Transaction.findAll({raw : true});
+                    return Transaction.findAll({raw : true,where:{SubscribeId :subscribe.id}});
                 }).then(transaction => {
-                    console.log(transaction)
-                    res.redirect('/')
+                    let content = `<p>Kamu telah berlangganan Susu di GoMilk</p> <br> ${helpers.getTable(transaction)}`
+                    helpers.sendNotify(req.session.user.email,'Notifikasi Berlangganan GoMilk',content)
+                    res.redirect('/subscribes')
                 })    
             }).catch((err) => {
                 res.send(err)

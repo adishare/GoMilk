@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GoMilk</title>
+    <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var order = false;
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("li").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="content">
+
+        <%- include('./partials/header.ejs') %>
+
+        <nav>
+            <div class="navbar">
+            <input id="myInput" type="text" placeholder="Search..">
+            <br><br>
+          
+            
+            </div>
+        </nav>
+    
+        <main style="column-count: 1;display:grid;justify-items: center;">
+         
+        <div class="postCard" style="width : 1200px;">
+
+            <table border="1">
+                <tr>
+                    <th> Product  </th>
+                    <th> Customer  </th>
+                    <th> Tempo  </th>
+                    <th> StartDate  </th>
+                    <th> EndDate  </th>
+                    <th> SubscribeStatus  </th>
+                    <th> Transactions  </th>
+                </tr>
+
+                <% subscribes.forEach(subscribe => { %>
+                <tr>
+                    <td><%= subscribe.Product.name %> </td>
+                    <td><%= subscribe.User.username %> </td>
+                    <td><%= subscribe.tempo %> </td>
+                    <td><%= helpers.getFormattedDate(subscribe.startDate) %> </td>
+                    <td><%= helpers.getFormattedDate(subscribe.endDate) %> </td>
+                    <td><%= subscribe.status %> </td>
+                    <td>
+                    <ol><a href=""></a>
+                    <% subscribe.Transactions.forEach(transaction => { %>
+                        <li> <%= helpers.getFormattedDate(transaction.processDate) %> | <%= helpers.getCurrency(transaction.subtotal) %> | <%= transaction.processed %> | <a href="/transactions/<%= transaction.id %>/process"> --> process</a> </li>
+                    <% }) %>
+                    </ol>
+                    </td>
+                </tr>
+                <% }) %>
+            </table>
+
+        </div>
+
+    
+            
+
+
+        </main>
+
+        <aside>
+            
+        </aside>
+
+        
+
+        <footer></footer>
+
+    </div>
+    
+</body>
+</html>

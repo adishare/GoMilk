@@ -13,6 +13,10 @@ module.exports = class ControllerUser {
         });
     }
 
+    static showIndex(req,res){
+        res.render('users/userDetail',{user : req.session.user})
+    }
+
     static add(req,res){
         User.create(req.body)
         .then(() => {
@@ -22,13 +26,17 @@ module.exports = class ControllerUser {
         });
     }
 
+    static showEdit(req,res){
+        res.render('users/userEdit',{user : req.session.user})
+    }
+
     static update(req,res){
         User.update(
             req.body,
-            {where : {id : req.params.userId}}
+            {where : {id : req.session.user.id}}
         )
         .then(() => {
-            res.redirect('/')
+            res.redirect('/users')
         }).catch((err) => {
             res.send(err)
         });

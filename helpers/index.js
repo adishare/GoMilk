@@ -1,14 +1,23 @@
 const {User} = require('../models')
+const tableify = require('html-tableify')
+const nodemailer = require('nodemailer');
 
 module.exports = class Helper{
 
     static authentication(req,res,next){
-        if(req.session.id){
+        if(req.session.user){
             next()
         } else {
             res.redirect('/login')
         }
-    
+    }
+
+    static godMode(req,res,next){
+        if(req.session.user && req.session.user.role == 'admin' ){
+            next()
+        } else {
+            res.redirect('/login')
+        }
     }
 
     static login(req,res){
@@ -32,6 +41,37 @@ module.exports = class Helper{
     static getCurrency(num) {
         num = num.toLocaleString();
         return `Rp. ${num}`
+    }
+
+    static getTable(arrOfObj){
+        return tableify(arrOfObj)
+    }
+
+    static sendNotify(to,subject,htmlcontent){
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'gomilkid@gmail.com',
+                pass: 'gomilk123456789'
+            }
+        });
+        const mailOptions = {
+            from: 'gomilkid@gmail.com', 
+            to: to, 
+            subject: subject, 
+            html: htmlcontent
+        };
+        transporter.sendMail(mailOptions, function (err, info) {
+            if(err)
+              console.log(err)
+            else
+              console.log(info);
+         });
+    }
+
+    static getFormattedDate(date){
+        let formatted = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
+        return formatted
     }
 
 }
