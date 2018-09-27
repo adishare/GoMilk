@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Subscribe = sequelize.define('Subscribe', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     UserId: DataTypes.INTEGER,
     ProductId: DataTypes.INTEGER,
     tempo: DataTypes.INTEGER,

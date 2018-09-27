@@ -1,7 +1,7 @@
 const app = require('express').Router()
 
-app.get('/',(req,res)=>{    
-    res.render('index',{session : req.session.user})
+app.get('/',(req,res)=>{
+    res.redirect('/products')
 })
 
 app.use('/products',require('./products.js'))

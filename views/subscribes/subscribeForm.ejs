@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GoMilk</title>
+    <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+    <div id="content">
+
+        <%- include('../partials/header.ejs') %>
+
+        <nav>
+            <div class="navbar">
+               
+            </div>
+        </nav>
+
+    
+        <main style="column-count: 1;display:grid;justify-items: center;">
+ 
+            <div class="postCard" style="width : 500px;">
+                <form method="POST">
+                    <input type="hidden" name="UserId" value="<%= user.id %>">
+                    <input type="hidden" name="ProductId" value="<%= productId %>">
+                    <br>Tempo<br>
+                    <input type="number" name="tempo" placeholder="Tempo">
+                    <br>Start Date<br>
+                    <input type="date" name="startDate" placeholder="Start Date">
+                    <br>End Date<br>
+                    <input type="date" name="endDate" placeholder="End Date"><br><br>
+                    
+
+                    <input type="submit" value="subscribe">
+                </form>
+            </div>
+
+        </main>
+
+        <aside>
+            
+        </aside>
+
+        
+
+        <footer></footer>
+
+    </div>
+    
+</body>
+</html>
