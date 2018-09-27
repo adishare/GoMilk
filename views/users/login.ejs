@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    <title>Login</title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <main  style="column-count: 1;display: grid;justify-items: center;">
+    <h1>Login</h1>
+        <div class="loginForm">
+            <div class="postCard">
+                
+                
+                <% if (err) { %>
+                    <h1><%= err %></h1> 
+                <% } %>
+
+                <form action="/login" method="post">
+                    <input type="text" name = "username" placeholder = "USERNAME" value="<%= inputed? inputed.username : '' %>"> <br>
+                    <br>
+                    <input type="password" name = "password" placeholder = "PASSWORD" value="<%= inputed? inputed.password : '' %>">
+                    <br>
+                    <br>
+                    <input class="questionBtn" type="submit"  value="Login"><br><br>
+
+
+                    <div><h1><a href="/register">register</a></div></h1></div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

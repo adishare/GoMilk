@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GoMilk</title>
+    <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+    <div id="content">
+
+        <%- include('../partials/header.ejs') %>
+
+        <nav>
+            <div class="navbar">
+               
+            </div>
+        </nav>
+    
+        <main style="column-count: 2;display:grid;justify-items: center;">
+ 
+            <div class="postCard" style="width : 200px;">
+                <img src="<%= product.img %>" alt="">
+                <h1><%= product.name %></h1>
+                <table >
+                    <tr>
+                        <th>Flavor</th>
+                        <td><%= product.flavor  %></td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td><%= product.category  %></td>
+                    </tr>
+                    <tr>
+                        <th>Unit</th>
+                        <td><%= product.unit  %></td>
+                    </tr>
+                    <tr>
+                        <th>Rating</th>
+                        <td><%= product.rating  %></td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td><%= helpers.getCurrency(product.price)  %></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="postCard">
+                <img src="<%= product.img %>" alt="">
+                <h1><%= product.name %></h1>
+                <table >
+                    <tr>
+                        <th>Flavor</th>
+                        <td><%= product.flavor  %></td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td><%= product.category  %></td>
+                    </tr>
+                    <tr>
+                        <th>Unit</th>
+                        <td><%= product.unit  %></td>
+                    </tr>
+                    <tr>
+                        <th>Rating</th>
+                        <td><%= product.rating  %></td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td><%= helpers.getCurrency(product.price)  %></td>
+                    </tr>
+                </table>
+            </div>
+
+        </main>
+
+        <aside>
+            
+        </aside>
+
+        
+
+        <footer></footer>
+
+    </div>
+    
+</body>
+</html>
