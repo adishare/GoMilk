@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GoMilk</title>
-    <link rel="stylesheet" href="/styles/style.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <%- include('../partials/head',{title:'Products'}) %> 
     <script>
         $(document).ready(function(){
             var order = false;
@@ -27,10 +23,10 @@
             <div class="navbar">
             <input id="myInput" type="text" placeholder="Search..">
             <br><br>
-            <button class="sortButton">
+            <button class="questionBtn">
                 Sort by Rating
             </button>
-            
+            <%- include('../partials/adminNav.ejs') %>
             </div>
         </nav>
     
@@ -39,7 +35,7 @@
              <% products.forEach(product =>{ %>
                 <a href="/products/<%= product.id %>">
                 <div class="postCard">
-                    <img src="<%= product.img %>" alt="">
+                    <img style="max-width : 280px;" src="<%= product.img %>" alt="">
                     <h1><%= product.name %></h1>
                     <table >
                         <tr>

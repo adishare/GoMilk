@@ -7,6 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     processed: DataTypes.STRING
   }, {});
 
+
+  Transaction.prototype.getCurrency = function(){
+    this.subtotal = this.subtotal.toLocaleString();
+    return `Rp. ${this.subtotal}`
+  }
+
   Transaction.associate = function(models) {
     Transaction.belongsTo(models.Subscribe)  
   };

@@ -1,8 +1,14 @@
 const {User} = require('../models')
 const tableify = require('html-tableify')
 const nodemailer = require('nodemailer');
+const moment = require('moment');
 
 module.exports = class Helper{
+
+    static dateOnly(timestamp){
+        let onlydate = moment(timestamp).format("dddd, DD-MMM-YYYY")
+        return onlydate
+    }
 
     static authentication(req,res,next){
         if(req.session.user){
@@ -73,5 +79,7 @@ module.exports = class Helper{
         let formatted = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
         return formatted
     }
+
+
 
 }

@@ -27,8 +27,8 @@ module.exports = class ControllerSubscribe {
         });
     }
 
-    static showAdd(req,res){
-        res.render('subscribes/subscribeForm',{user: req.session.user, productId:req.params.productId})
+    static showAdd(req,res,data){
+        res.render('subscribes/subscribeForm',{user: req.session.user, productId:req.params.productId,data})
     }
 
     static add(req,res,next){
@@ -67,7 +67,7 @@ module.exports = class ControllerSubscribe {
                 res.send(err)
             });
         }).catch((err) => {
-            res.send(err) 
+            res.render('subscribes/subscribeForm',{user: req.session.user, productId:req.params.productId,data : err})
         });
     }
 

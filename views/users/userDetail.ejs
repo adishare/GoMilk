@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/style.css" type="text/css">
-    <title>Login</title>
+    <%- include('../partials/head',{title:'User Detail'}) %>
 </head>
 <body>
     <%- include('../partials/header') %>
@@ -15,7 +10,7 @@
             
             <div class="postCard">
             <h1>Account Detail</h1>
-            <table >
+            <table class="coolTable" >
                 <tr>
                     <th>Username</th>
                     <td><%= user.username  %></td>
@@ -37,9 +32,9 @@
                     <td><%= user.address  %></td>
                 </tr>
             </table>
-
-            <a href="/users/edit">Edit Data</a>
-
+            <br>
+            <button class='questionBtn' ><a href="/users/edit">Edit Data</a></button>
+            <br>
 
                
             </div>

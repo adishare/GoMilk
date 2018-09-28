@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GoMilk</title>
-    <link rel="stylesheet" href="/styles/style.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <%- include('./partials/head',{title:'Admin Mode'}) %>
     <script>
         $(document).ready(function(){
             var order = false;
@@ -28,7 +24,8 @@
             <input id="myInput" type="text" placeholder="Search..">
             <br><br>
           
-            
+            <%- include('./partials/adminNav.ejs') %>
+
             </div>
         </nav>
     
@@ -36,14 +33,14 @@
          
         <div class="postCard" style="width : 1200px;">
 
-            <table border="1">
+            <table class="coolTable">
                 <tr>
                     <th> Product  </th>
                     <th> Customer  </th>
                     <th> Tempo  </th>
                     <th> StartDate  </th>
                     <th> EndDate  </th>
-                    <th> SubscribeStatus  </th>
+                    <th> Status  </th>
                     <th> Transactions  </th>
                 </tr>
 
@@ -52,8 +49,8 @@
                     <td><%= subscribe.Product.name %> </td>
                     <td><%= subscribe.User.username %> </td>
                     <td><%= subscribe.tempo %> </td>
-                    <td><%= helpers.getFormattedDate(subscribe.startDate) %> </td>
-                    <td><%= helpers.getFormattedDate(subscribe.endDate) %> </td>
+                    <td><%= helpers.dateOnly(subscribe.startDate) %> </td>
+                    <td><%= helpers.dateOnly(subscribe.endDate) %> </td>
                     <td><%= subscribe.status %> </td>
                     <td>
                     <ol><a href=""></a>

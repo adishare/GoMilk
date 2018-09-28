@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GoMilk</title>
-    <link rel="stylesheet" href="/styles/style.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
+    <%- include('../partials/head',{title:'Subscribes'}) %>
 </head>
 <body>
     <div id="content">
@@ -22,9 +19,9 @@
              
             
             <div class="postCard" style="width : 800px;">
-                <img src="<%= subscribe.Product.img %>" alt="">
+                <img style="max-width:830px;" src="https://picsum.photos/830/300/?random" alt="">
                 <h1>Subscribe NO: <%= subscribe.id %></h1>
-                <table >
+                <table>
                     <tr>
                         <th>Milk</th>
                         <td><%= subscribe.Product.name  %></td>
@@ -51,15 +48,15 @@
                     </tr>
                     <tr>
                         <th>Subscribed At</th>
-                        <td><%= subscribe.createdAt  %></td>
+                        <td><%= helpers.dateOnly(subscribe.createdAt)  %></td>
                     </tr>
                     <tr>
                         <th>Start At</th>
-                        <td><%= subscribe.startDate  %></td>
+                        <td><%= helpers.dateOnly(subscribe.startDate)  %></td>
                     </tr>
                     <tr>
                         <th>End At</th>
-                        <td><%= subscribe.endDate  %></td>
+                        <td><%= helpers.dateOnly(subscribe.endDate)  %></td>
                     </tr>
                     <tr>
                         <th>Status</th>
@@ -69,7 +66,7 @@
 
                 <br><br>
 
-                <table>
+                <table class="coolTable">
                 <tr>
                     <th>ID</th>
                     <th>Process Date</th>
@@ -80,7 +77,7 @@
                     <tr>
                         <td><%= transaction.id %></td>
                         <td><%= transaction.processDate %></td>
-                        <td><%= transaction.subtotal %></td>
+                        <td><%= helpers.getCurrency(transaction.subtotal) %></td>
                         <td><%= transaction.processed %></td>
                     </tr>
                 <% }) %>

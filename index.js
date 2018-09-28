@@ -15,20 +15,25 @@ app.use(express.urlencoded({extended : true}))
 app.use(express.json())
 app.use(express.static(__dirname + '/public'))
 
-app.get('/register', (req,res)=>{res.render('users/register')})
-app.post('/register', (req,res)=>{
+app.get('/register', (req,res,data)=>{res.render('users/register',{data, inputed : null})})
+app.post('/register', (req,res,data)=>{
     User.create(req.body)
     .then(() => {
         let content = `<p> kamu telah terdaftar di GoMilk app : ${tableify([req.body])} </p>`
         helpers.sendNotify(req.body.email,'GoMilk Notify - Registered',content)
         res.redirect('/')
     }).catch((err) => {
-        res.send(err)
+        res.render('users/register',{data : err,inputed : req.body})
     });
 })
 
 app.get('/login', (req,res)=>{res.render('users/login',{inputed : null, err:null})})
 app.post('/login', require('./helpers').login )
+
+app.use(function(req, res, next) {
+    res.locals.loggedInUser = req.session.user;
+    next();
+});
 
 app.use('/', (req,res,next)=>{helpers.authentication(req,res,next)} ,require('./routes'))
 app.get('/admin', (req,res,next)=>{helpers.godMode(req,res,next)} ,(req,res)=>{

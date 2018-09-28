@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GoMilk</title>
-    <link rel="stylesheet" href="/styles/style.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Old+Standard+TT" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico">
+    <%- include('../partials/head',{title:'Product Detail'}) %>   
 </head>
 <body>
     <div id="content">
@@ -20,7 +17,7 @@
         <main style="column-count: 2;display:grid;justify-items: center;">
  
             <div class="postCard" style="width : 400px;">
-                <img src="<%= product.img %>" alt="">
+                <img src="https://picsum.photos/450/300/?random" alt="">
                 <h1><%= product.name %></h1>
                 <table >
                     <tr>
@@ -43,9 +40,10 @@
                         <th>Price</th>
                         <td><%= helpers.getCurrency(product.price)  %></td>
                     </tr>
-                </table>
-
-                <a href="/subscribes/<%= product.id %>">Subscribe This</a>
+                </table><br>
+                
+                <button class='newTripBtn'><a href="/subscribes/<%= product.id %>">Subscribe This</a></button>
+                <br>
 
             </div>
 

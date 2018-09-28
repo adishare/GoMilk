@@ -10,8 +10,20 @@ module.exports = (sequelize, DataTypes) => {
     UserId: DataTypes.INTEGER,
     ProductId: DataTypes.INTEGER,
     tempo: DataTypes.INTEGER,
-    startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE,
+    startDate: {
+      type : DataTypes.DATE,
+      validate : {
+        isDate: {args:true, msg: 'Harus isi tanggal'},
+        isAfter: new Date()
+      }
+    },
+    endDate: {
+      type : DataTypes.DATE,
+      validate : {
+        isDate: {args:true, msg: 'Harus isi tanggal'},
+        isAfter: new Date()
+      }
+    },
     status: DataTypes.INTEGER
   }, {});
   Subscribe.associate = function(models) {
