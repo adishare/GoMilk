@@ -26,10 +26,9 @@ app.post('/register', (req,res)=>{
         res.send(err)
     });
 })
+
 app.get('/login', (req,res)=>{res.render('users/login',{inputed : null, err:null})})
 app.post('/login', require('./helpers').login )
-
-
 
 app.use('/', (req,res,next)=>{helpers.authentication(req,res,next)} ,require('./routes'))
 app.get('/admin', (req,res,next)=>{helpers.godMode(req,res,next)} ,(req,res)=>{
@@ -38,7 +37,6 @@ app.get('/admin', (req,res,next)=>{helpers.godMode(req,res,next)} ,(req,res)=>{
     })
     .then((subscribes) => {
         res.render('godMode',{subscribes})
-        // res.send(subscribes)
     }).catch((err) => {
         res.send(err)
     });
