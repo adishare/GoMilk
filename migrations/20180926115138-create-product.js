@@ -22,7 +22,7 @@ module.exports = {
       },
       rating: {
         type: Sequelize.INTEGER,
-        defaultValue : 3
+        defaultValue : Math.floor(Math.random()*(10-1)+1)
       },
       price: {
         type: Sequelize.INTEGER

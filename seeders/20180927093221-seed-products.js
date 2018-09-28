@@ -9,7 +9,7 @@ module.exports = {
         category: "Susu Sapi",
         unit: "Liter",
         price: 15000,
-        img : "https://picsum.photos/320/400/?random"
+        img : "https://picsum.photos/320/422/?random"
       },
       {
         name: "GoMilk Fun",
@@ -17,7 +17,7 @@ module.exports = {
         category: "Susu Sapi",
         unit: "Liter",
         price: 12000,
-        img : "https://picsum.photos/320/300/?random"
+        img : "https://picsum.photos/320/305/?random"
       },
       {
         name: "GoMilk Fun",
@@ -44,8 +44,8 @@ module.exports = {
         img : "https://picsum.photos/320/200/?random"
       },
       {
-        name: "Susu dankow",
-        flavor: "Rasanya",
+        name: "Susu Dankow",
+        flavor: "Rasanyaa",
         category: "Terenak",
         unit: "Liter",
         price: 20000,
@@ -53,8 +53,8 @@ module.exports = {
       },
       {
         name: "Susu Keledai",
-        flavor: "Rasa yang pernah ada",
-        category: "Terenak",
+        flavor: "Rasa Ingin Tau",
+        category: "Terlezat",
         unit: "Liter",
         price: 20000,
         img : "https://picsum.photos/320/500/?random"
@@ -62,10 +62,74 @@ module.exports = {
       {
         name: "Susu Kambing Female",
         flavor: "Rasa Sudoku",
-        category: "Terenak",
+        category: "Terlezat",
         unit: "Liter",
         price: 20000,
         img : "https://picsum.photos/320/250/?random"
+      },
+      {
+        name: "Susu Kambing Male",
+        flavor: "Rasa Boggle",
+        category: "Terlezat",
+        unit: "Liter",
+        price: 50000,
+        img : "https://picsum.photos/320/380/?random"
+      },
+      {
+        name: "Susu Kuda Female",
+        flavor: "Rasa Sudoku",
+        category: "Terlezat",
+        unit: "Liter",
+        price: 50000,
+        img : "https://picsum.photos/320/370/?random"
+      },
+      {
+        name: "Susu Kuda Male",
+        flavor: "Rasa Enak",
+        category: "Terlezat",
+        unit: "Liter",
+        price: 20000,
+        img : "https://picsum.photos/320/360/?random"
+      },
+      {
+        name: "Susu Kedelai Perkasa",
+        flavor: "Rasa Enak",
+        category: "Terlezat",
+        unit: "Liter",
+        price: 40000,
+        img : "https://picsum.photos/320/350/?random"
+      },
+      {
+        name: "Susu Bubuk Vanila",
+        flavor: "Rasa Sudoku",
+        category: "Terlezat",
+        unit: "Liter",
+        price: 20000,
+        img : "https://picsum.photos/320/340/?random"
+      },
+      {
+        name: "Susu Bubuk Chocolate",
+        flavor: "Rasa Sudoku",
+        category: "Terlezat",
+        unit: "Liter",
+        price: 20000,
+        img : "https://picsum.photos/320/330/?random"
+      },
+      {
+        name: "Susu Kental",
+        flavor: "Rasa Sudoku",
+        category: "Terlezat",
+        unit: "Kaleng",
+        price: 20000,
+        img : "https://picsum.photos/320/320/?random"
+      },
+      {
+        name: "Susu Kental",
+        flavor: "Rasa Sudoku",
+        category: "Terlezat",
+        unit: "Kaleng",
+        price: 20000,
+        img : "https://picsum.photos/320/310/?random"
       }
     ])
   },
@@ -73,7 +137,7 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op
     return queryInterface.bulkDelete('Products',{
-      flavor : {[Op.in] :['Rasa']}
+      price : {[Op.gt] :1}
     })
   }
 };

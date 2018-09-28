@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type : DataTypes.STRING,
       validate : {
+        len: [5,15],
         notEmpty : {args :true, msg: 'username isi dong'},
         isUnique: function (value, next) {
           let self = this;          
@@ -23,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type : DataTypes.STRING,
       validate : {
+        len: [5,15],
         notEmpty : {args :true, msg: 'Kasih password atuh'}
       }
     },
@@ -68,8 +70,6 @@ module.exports = (sequelize, DataTypes) => {
     }
 
   });
-
-
 
 
 

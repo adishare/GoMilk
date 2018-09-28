@@ -18,7 +18,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue : 'customer'
       },
       phone: {
         type: Sequelize.STRING

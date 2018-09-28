@@ -80,6 +80,8 @@ module.exports = class Helper{
         return formatted
     }
 
-
+    static getRangedRandom(min,max){
+        return Math.random() * (max - min) + min;
+    }
 
 }

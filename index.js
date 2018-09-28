@@ -15,6 +15,7 @@ app.use(express.urlencoded({extended : true}))
 app.use(express.json())
 app.use(express.static(__dirname + '/public'))
 
+//register handler
 app.get('/register', (req,res,data)=>{res.render('users/register',{data, inputed : null})})
 app.post('/register', (req,res,data)=>{
     User.create(req.body)
@@ -26,16 +27,21 @@ app.post('/register', (req,res,data)=>{
         res.render('users/register',{data : err,inputed : req.body})
     });
 })
-
+//login handler
 app.get('/login', (req,res)=>{res.render('users/login',{inputed : null, err:null})})
 app.post('/login', require('./helpers').login )
-
+app.get('/logout', (req,res)=>{
+    req.session.user = null
+    res.redirect('/')
+})
+//send session to locals
 app.use(function(req, res, next) {
     res.locals.loggedInUser = req.session.user;
     next();
 });
-
+//routes
 app.use('/', (req,res,next)=>{helpers.authentication(req,res,next)} ,require('./routes'))
+// god mode
 app.get('/admin', (req,res,next)=>{helpers.godMode(req,res,next)} ,(req,res)=>{
     Subscribe.findAll({
         include : [Transaction,User,Product]
